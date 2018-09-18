@@ -1,5 +1,3 @@
-import foundation
-
 struct Product {
   var name: String
   var price: Double
@@ -15,12 +13,26 @@ struct ProductsRepositoryImplementation: ProductsRepository {
     }
 }
 
-protocol ProductsRespositoryInjectable {
+protocol ProductsRepositoryInjectable {
   var products: ProductsRepository { get }
 }
 
 extension ProductsRepositoryInjectable {
-  var products: ProductRepository {
+  var products: ProductsRepository {
     return ProductsRepositoryImplementation ()
   }
 }
+
+
+// Now using the injectable
+
+struct ProductViewModel: ProductsRepositoryInjectable {
+
+  init() {
+    self.products.fetchProducts().forEach {
+      print ("This \($0.name) costs R\($0.price)")
+    }
+  }
+}
+
+ProductViewModel()
