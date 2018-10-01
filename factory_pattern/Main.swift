@@ -19,7 +19,7 @@ enum Job
     case AndroidDev
     case Web
     case QA
-    case Produce_Owner
+    case Product_Owner
 }
 
 struct iOSDeveloperJobSeeker: JobContactProtocol{
@@ -83,7 +83,7 @@ struct ProductOwnerDeveloperJobSeeker: JobContactProtocol{
 }
 
 // Factory Pattern being implemented
-struct JobContracterFactory
+struct JobContacterFactory
 {
     static func getJobSeeker (contact: Contact) -> JobContactProtocol
     {
@@ -91,13 +91,13 @@ struct JobContracterFactory
         {
             case .iOSDev:
                 return iOSDeveloperJobSeeker(contact: contact)
-            case .AndriodDev:
+            case .AndroidDev:
                 return AndroidDeveloperJobSeeker(contact: contact)
             case .Web:
                 return WebDeveloperJobSeeker(contact: contact)
             case .QA:
                 return QADeveloperJobSeeker(contact: contact)
-            case .Produce_Owner:
+            case .Product_Owner:
                 return ProductOwnerDeveloperJobSeeker(contact: contact)
         }
     }
@@ -106,9 +106,9 @@ struct JobContracterFactory
 func main ()
 {
     var contacts = [Contact]()
-    contacts.append(Contact(name: "J Rob", email: "jrob@example.com", job: .iOS, desiredSal: 135000))
+    contacts.append(Contact(name: "J Rob", email: "jrob@example.com", job: .iOSDev, desiredSal: 135000))
     
-    contacts.append(Contact(name: "K Rock", email: "krock@example.com", job: .Android, desiredSal: 134000))
+    contacts.append(Contact(name: "K Rock", email: "krock@example.com", job: .AndroidDev, desiredSal: 134000))
     
     contacts.append(Contact(name: "P Money", email: "pmoney@example.com", job: .Web, desiredSal: 110000))
     
