@@ -81,3 +81,24 @@ struct ProductOwnerDeveloperJobSeeker: JobContactProtocol{
         return "Dear \(contact.name), Times are still good to be in development.  Maybe you should consider learning to code or going back to code. If we can cut your desired salary of \(contact.desiredSal) in half, I should be able to place you as a contract to hire. Send me your resume!"
     }
 }
+
+// Factory Pattern being implemented
+struct JobContracterFactory
+{
+    static func getJobSeeker (contact: Contact) -> JobContactProtocol
+    {
+        switch contact.job
+        {
+            case .iOSDev:
+                return iOSDeveloperJobSeeker(contact: contact)
+            case .AndriodDev:
+                return AndroidDeveloperJobSeeker(contact: contact)
+            case .Web:
+                return WebDeveloperJobSeeker(contact: contact)
+            case .QA:
+                return QADeveloperJobSeeker(contact: contact)
+            case .Produce_Owner:
+                return ProductOwnerDeveloperJobSeeker(contact: contact)
+        }
+    }
+}
